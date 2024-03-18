@@ -325,302 +325,6 @@
                     "name": "rectangle",
                     "points": [
                         {
-                            "x": 317.05899536765656,
-                            "y": 255.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 255.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 280.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 280.2102327951116
-                        }
-                    ],
-                    "centers": [
-                        {
-                            "x": 391.7633906096401,
-                            "y": 255.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 267.7102327951116
-                        },
-                        {
-                            "x": 391.7633906096401,
-                            "y": 280.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 267.7102327951116
-                        }
-                    ],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "color": "#000000",
-                    "lineWidth": 2,
-                    "lineDash": [
-                        0,
-                        0
-                    ],
-                    "fontSize": 20,
-                    "fillColor": "#c7c7c7",
-                    "fillActive": true,
-                    "showMeasurements": false,
-                    "scaleTextByLineWidth": false,
-                    "selectedImageSrc": "0",
-                    "imageActive": false,
-                    "borderRadius": 0
-                },
-                {
-                    "name": "textbox",
-                    "points": [
-                        {
-                            "x": 332.1905972060193,
-                            "y": 267.7102327951116
-                        }
-                    ],
-                    "centers": [],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "fontSize": 20,
-                    "textAlign": "left",
-                    "textBaseline": "middle",
-                    "text": "Add prefix",
-                    "rotation": 0
-                },
-                {
-                    "name": "rectangle",
-                    "points": [
-                        {
-                            "x": 317.05899536765656,
-                            "y": 280.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 280.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 305.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 305.2102327951116
-                        }
-                    ],
-                    "centers": [
-                        {
-                            "x": 391.7633906096401,
-                            "y": 280.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 292.7102327951116
-                        },
-                        {
-                            "x": 391.7633906096401,
-                            "y": 305.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 292.7102327951116
-                        }
-                    ],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "color": "#000000",
-                    "lineWidth": 2,
-                    "lineDash": [
-                        0,
-                        0
-                    ],
-                    "fontSize": 20,
-                    "fillColor": "#c7c7c7",
-                    "fillActive": true,
-                    "showMeasurements": false,
-                    "scaleTextByLineWidth": false,
-                    "selectedImageSrc": "0",
-                    "imageActive": false,
-                    "borderRadius": 0
-                },
-                {
-                    "name": "textbox",
-                    "points": [
-                        {
-                            "x": 332.1905972060193,
-                            "y": 292.7102327951116
-                        }
-                    ],
-                    "centers": [],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "fontSize": 20,
-                    "textAlign": "left",
-                    "textBaseline": "middle",
-                    "text": "Remove prefix",
-                    "rotation": 0
-                },
-                {
-                    "name": "rectangle",
-                    "points": [
-                        {
-                            "x": 317.05899536765656,
-                            "y": 305.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 305.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 330.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 330.2102327951116
-                        }
-                    ],
-                    "centers": [
-                        {
-                            "x": 391.7633906096401,
-                            "y": 305.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 317.7102327951116
-                        },
-                        {
-                            "x": 391.7633906096401,
-                            "y": 330.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 317.7102327951116
-                        }
-                    ],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "color": "#000000",
-                    "lineWidth": 2,
-                    "lineDash": [
-                        0,
-                        0
-                    ],
-                    "fontSize": 20,
-                    "fillColor": "#c7c7c7",
-                    "fillActive": true,
-                    "showMeasurements": false,
-                    "scaleTextByLineWidth": false,
-                    "selectedImageSrc": "0",
-                    "imageActive": false,
-                    "borderRadius": 0
-                },
-                {
-                    "name": "textbox",
-                    "points": [
-                        {
-                            "x": 332.1905972060193,
-                            "y": 317.7102327951116
-                        }
-                    ],
-                    "centers": [],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "fontSize": 20,
-                    "textAlign": "left",
-                    "textBaseline": "middle",
-                    "text": "Add suffix",
-                    "rotation": 0
-                },
-                {
-                    "name": "rectangle",
-                    "points": [
-                        {
-                            "x": 317.05899536765656,
-                            "y": 330.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 330.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 355.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 355.2102327951116
-                        }
-                    ],
-                    "centers": [
-                        {
-                            "x": 391.7633906096401,
-                            "y": 330.2102327951116
-                        },
-                        {
-                            "x": 466.46778585162366,
-                            "y": 342.7102327951116
-                        },
-                        {
-                            "x": 391.7633906096401,
-                            "y": 355.2102327951116
-                        },
-                        {
-                            "x": 317.05899536765656,
-                            "y": 342.7102327951116
-                        }
-                    ],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "color": "#000000",
-                    "lineWidth": 2,
-                    "lineDash": [
-                        0,
-                        0
-                    ],
-                    "fontSize": 20,
-                    "fillColor": "#c7c7c7",
-                    "fillActive": true,
-                    "showMeasurements": false,
-                    "scaleTextByLineWidth": false,
-                    "selectedImageSrc": "0",
-                    "imageActive": false,
-                    "borderRadius": 0
-                },
-                {
-                    "name": "textbox",
-                    "points": [
-                        {
-                            "x": 332.1905972060193,
-                            "y": 342.7102327951116
-                        }
-                    ],
-                    "centers": [],
-                    "snapAllowed": true,
-                    "isCollidingWithMouse": false,
-                    "mouseIsCloseEnoughToSnap": false,
-                    "fontSize": 20,
-                    "textAlign": "left",
-                    "textBaseline": "middle",
-                    "text": "Remove suffix",
-                    "rotation": 0
-                },
-                {
-                    "name": "rectangle",
-                    "points": [
-                        {
                             "x": 466.46778585162366,
                             "y": 255.2102327951116
                         },
@@ -1441,6 +1145,302 @@
                     "textAlign": "left",
                     "textBaseline": "middle",
                     "text": "png",
+                    "rotation": 0
+                },
+                {
+                    "name": "rectangle",
+                    "points": [
+                        {
+                            "x": 317.05899536765656,
+                            "y": 255.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 255.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 280.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 280.2102327951116
+                        }
+                    ],
+                    "centers": [
+                        {
+                            "x": 391.7633906096401,
+                            "y": 255.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 267.7102327951116
+                        },
+                        {
+                            "x": 391.7633906096401,
+                            "y": 280.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 267.7102327951116
+                        }
+                    ],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "color": "#000000",
+                    "lineWidth": 2,
+                    "lineDash": [
+                        0,
+                        0
+                    ],
+                    "fontSize": 20,
+                    "fillColor": "#c7c7c7",
+                    "fillActive": true,
+                    "showMeasurements": false,
+                    "scaleTextByLineWidth": false,
+                    "selectedImageSrc": "0",
+                    "imageActive": false,
+                    "borderRadius": 0
+                },
+                {
+                    "name": "textbox",
+                    "points": [
+                        {
+                            "x": 332.1905972060193,
+                            "y": 267.7102327951116
+                        }
+                    ],
+                    "centers": [],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "fontSize": 20,
+                    "textAlign": "left",
+                    "textBaseline": "middle",
+                    "text": "Add prefix",
+                    "rotation": 0
+                },
+                {
+                    "name": "rectangle",
+                    "points": [
+                        {
+                            "x": 317.05899536765656,
+                            "y": 280.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 280.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 305.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 305.2102327951116
+                        }
+                    ],
+                    "centers": [
+                        {
+                            "x": 391.7633906096401,
+                            "y": 280.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 292.7102327951116
+                        },
+                        {
+                            "x": 391.7633906096401,
+                            "y": 305.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 292.7102327951116
+                        }
+                    ],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "color": "#000000",
+                    "lineWidth": 2,
+                    "lineDash": [
+                        0,
+                        0
+                    ],
+                    "fontSize": 20,
+                    "fillColor": "#c7c7c7",
+                    "fillActive": true,
+                    "showMeasurements": false,
+                    "scaleTextByLineWidth": false,
+                    "selectedImageSrc": "0",
+                    "imageActive": false,
+                    "borderRadius": 0
+                },
+                {
+                    "name": "textbox",
+                    "points": [
+                        {
+                            "x": 332.1905972060193,
+                            "y": 292.7102327951116
+                        }
+                    ],
+                    "centers": [],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "fontSize": 20,
+                    "textAlign": "left",
+                    "textBaseline": "middle",
+                    "text": "Remove prefix",
+                    "rotation": 0
+                },
+                {
+                    "name": "rectangle",
+                    "points": [
+                        {
+                            "x": 317.05899536765656,
+                            "y": 305.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 305.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 330.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 330.2102327951116
+                        }
+                    ],
+                    "centers": [
+                        {
+                            "x": 391.7633906096401,
+                            "y": 305.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 317.7102327951116
+                        },
+                        {
+                            "x": 391.7633906096401,
+                            "y": 330.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 317.7102327951116
+                        }
+                    ],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "color": "#000000",
+                    "lineWidth": 2,
+                    "lineDash": [
+                        0,
+                        0
+                    ],
+                    "fontSize": 20,
+                    "fillColor": "#c7c7c7",
+                    "fillActive": true,
+                    "showMeasurements": false,
+                    "scaleTextByLineWidth": false,
+                    "selectedImageSrc": "0",
+                    "imageActive": false,
+                    "borderRadius": 0
+                },
+                {
+                    "name": "textbox",
+                    "points": [
+                        {
+                            "x": 332.1905972060193,
+                            "y": 317.7102327951116
+                        }
+                    ],
+                    "centers": [],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "fontSize": 20,
+                    "textAlign": "left",
+                    "textBaseline": "middle",
+                    "text": "Add suffix",
+                    "rotation": 0
+                },
+                {
+                    "name": "rectangle",
+                    "points": [
+                        {
+                            "x": 317.05899536765656,
+                            "y": 330.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 330.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 355.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 355.2102327951116
+                        }
+                    ],
+                    "centers": [
+                        {
+                            "x": 391.7633906096401,
+                            "y": 330.2102327951116
+                        },
+                        {
+                            "x": 466.46778585162366,
+                            "y": 342.7102327951116
+                        },
+                        {
+                            "x": 391.7633906096401,
+                            "y": 355.2102327951116
+                        },
+                        {
+                            "x": 317.05899536765656,
+                            "y": 342.7102327951116
+                        }
+                    ],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "color": "#000000",
+                    "lineWidth": 2,
+                    "lineDash": [
+                        0,
+                        0
+                    ],
+                    "fontSize": 20,
+                    "fillColor": "#c7c7c7",
+                    "fillActive": true,
+                    "showMeasurements": false,
+                    "scaleTextByLineWidth": false,
+                    "selectedImageSrc": "0",
+                    "imageActive": false,
+                    "borderRadius": 0
+                },
+                {
+                    "name": "textbox",
+                    "points": [
+                        {
+                            "x": 332.1905972060193,
+                            "y": 342.7102327951116
+                        }
+                    ],
+                    "centers": [],
+                    "snapAllowed": true,
+                    "isCollidingWithMouse": false,
+                    "mouseIsCloseEnoughToSnap": false,
+                    "fontSize": 20,
+                    "textAlign": "left",
+                    "textBaseline": "middle",
+                    "text": "Remove suffix",
                     "rotation": 0
                 },
                 {
