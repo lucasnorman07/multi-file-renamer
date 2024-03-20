@@ -12,15 +12,11 @@ public class App {
         FileController fileController = FileController.getInstance();
         fileController.setFolderPath("folder");
 
-        fileController.printFileNamesInFolder();
-        fileController.addPrefixToFilesInCurrentFolder("prefix");
-        fileController.addSuffixToFilesInCurrentFolder("suffix");
-        fileController.printFileNamesInFolder();
-
-        // System.out.println(FileController.getBaseName("/mnt/home/myname/coolstuff/ctf/problems/forensics/flag.txt"));
-        // boolean renameStatus = FileController.rename("file.txt", "renamed.txt");
-        // if (renameStatus) System.out.println("RENAME SUCCESS!");
-        // else System.out.println("RENAME FAILURE!");
-        // PrefixController.addPrefix("file.txt", "prefix-");
+        File[] files = fileController.findInCurrentFolder(".txt", false, false, false);
+        if (files == null) {
+            System.out.println("An error occured!");
+            return;
+        }
+        for (File f : files) {System.out.println(f.getName());}
     }
 }

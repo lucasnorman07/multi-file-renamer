@@ -1,8 +1,13 @@
 package file_renaming;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 public class FileController {
     private static FileController _instance;
@@ -22,12 +27,6 @@ public class FileController {
     public void setFolderPath(String folderPath) {
         currentFolder = new File(folderPath);
     }
-    
-    public File[] getFileNamesInCurrentFolder() {
-        if (currentFolder == null) return null;
-        // if the folder is not null, then return the file paths
-        return currentFolder.listFiles();
-    }
 
     public void addPrefixToFilesInCurrentFolder(String prefix) {
         for (File file : currentFolder.listFiles()) {
@@ -45,8 +44,8 @@ public class FileController {
         }
     }
 
-    public void printFileNamesInFolder() {
-        File[] files = getInstance().getFileNamesInCurrentFolder();
+    public void printFileNamesInCurrentFolder() {
+        File[] files = currentFolder.listFiles();
         if (files == null) {
             System.out.println("The current files in folder is null");
         } else {
@@ -54,6 +53,33 @@ public class FileController {
                 System.out.println(file.getName());
             }
         }
+    }
+
+    private Pattern createRegexPattern(String regex, boolean caseSensitive) {
+        try {
+            if (caseSensitive) return Pattern.compile(regex);
+            else return Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        } catch (PatternSyntaxException _e) {
+           return null;
+        }
+    }
+
+    public File[] findInCurrentFolder(String searchString, boolean useRegex, boolean caseSensitive, boolean matchWholeWords) {
+        if (currentFolder == null) return null;
+        Pattern pattern = createRegexPattern(searchString, caseSensitive);
+        // if an error was caught then return null
+        if (pattern == null) return null;
+        // filter by all of the file names that match the regex
+        return currentFolder.listFiles((_dir, name) -> {
+            if (useRegex) {
+                // returns true if a match is found
+                return pattern.matcher(name).find();
+            }
+            // if not case sensitive then uppercase the name and the search string to ignore case
+            String newName = caseSensitive ? name : name.toUpperCase();
+            String newSearchString = caseSensitive ? searchString : searchString.toUpperCase();
+            return newName.contains(newSearchString);
+        });
     }
 
     // returns true for success and false for failure
