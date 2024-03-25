@@ -64,7 +64,7 @@ public class FileController {
         }
     }
 
-    public File[] findInCurrentFolder(String searchString, boolean useRegex, boolean caseSensitive, boolean matchWholeWords) {
+    public File[] findInCurrentFolder(String searchString, boolean useRegex, boolean caseSensitive) {
         if (currentFolder == null) return null;
         Pattern pattern = createRegexPattern(searchString, caseSensitive);
         // if an error was caught then return null
@@ -80,6 +80,39 @@ public class FileController {
             String newSearchString = caseSensitive ? searchString : searchString.toUpperCase();
             return newName.contains(newSearchString);
         });
+    }
+
+    public void replaceInCurrentFolder(String target, String replacement, boolean useRegex, boolean caseSensitive) {
+        if (currentFolder == null) return;
+        // loop over each file and replace the any matches with the target string to the replacement string
+        for (File file : currentFolder.listFiles()) {
+            boolean status = rename(file, findReplaceInString(file.getName(), target, replacement, useRegex, caseSensitive));
+            if (!status) {
+                System.out.println("Two files can't have the same name!");
+            }
+        }
+    }
+
+    public static String findReplaceInString(String text, String target, String replacement, boolean useRegex, boolean caseSensitive) {
+        if (useRegex) {
+            if (caseSensitive)
+                return text.replaceAll(target, replacement);   
+            return text.replaceAll("(?i)" + target, replacement);   
+        }
+        // without regex
+        if (caseSensitive)
+            return text.replace(target, replacement);
+        return replaceIgnoreCase(text, target, replacement);
+    }
+    
+    public static String replaceIgnoreCase(String text, String target, String replacement) {
+        int index = 0;
+        while ((index = text.toLowerCase().indexOf(target.toLowerCase())) != -1) {
+            text = text.substring(0, index) +
+            replacement +
+            text.substring(index + replacement.length(), text.length());
+        };
+        return text;
     }
 
     // returns true for success and false for failure
