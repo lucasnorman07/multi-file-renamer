@@ -15,5 +15,6 @@ public class Frame extends JFrame {
         this.panel = panel;
         add(panel);
         // setFocusable(true);
+        pack();
     }
 }

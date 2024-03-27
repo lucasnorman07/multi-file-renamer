@@ -12,9 +12,6 @@ public class App {
         FileController fileController = FileController.getInstance();
         fileController.setFolderPath("folder");
 
-        System.out.println(FileController.replaceIgnoreCase("banana", "a", "q"));
-
-        // fileController.replaceInCurrentFolder("[1-2]", "5", true, false); 
-        // fileController.printFileNamesInCurrentFolder();
+        
     }
 }

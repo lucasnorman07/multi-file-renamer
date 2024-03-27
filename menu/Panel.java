@@ -1,8 +1,7 @@
 package menu;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class Panel extends JPanel {
     public Panel() {
@@ -12,5 +11,7 @@ public class Panel extends JPanel {
         add(label);
         add(button);
         
+        FileScrollPane scrollPane = new FileScrollPane(new JPanel());
+        add(scrollPane);
     }
 }
