@@ -5,9 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Frame extends JFrame {
-    private Panel panel; 
+    private MainMenu panel; 
 
-    public Frame(String title, Panel panel) {
+    public Frame(String title, MainMenu panel) {
         setVisible(true);
         setTitle(title);
         setSize(400, 300);
