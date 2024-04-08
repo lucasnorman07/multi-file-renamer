@@ -9,6 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import javax.swing.JFileChooser;
+
+import menu.Frame;
+import menu.MainFrame;
+
 public class FileController {
     private static FileController _instance;
 
@@ -26,6 +31,14 @@ public class FileController {
 
     public void setFolderPath(String folderPath) {
         currentFolder = new File(folderPath);
+    }
+
+    // let the user browse and select a new folder
+    public void browseFolders() {
+        JFileChooser chooser = new JFileChooser();
+        int choice = chooser.showOpenDialog(MainFrame.getInstance());
+        System.out.println(choice);
+        // setFolderPath("text");
     }
 
     public void addPrefixToFilesInCurrentFolder(String prefix) {
