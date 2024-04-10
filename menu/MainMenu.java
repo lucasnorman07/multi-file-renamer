@@ -12,6 +12,7 @@ public class MainMenu extends JPanel {
     private static MainMenu _instance;
 
     private JPanel sidePanel;
+    private FileScrollPane scrollPane;
 
     public static synchronized MainMenu getInstance() {
         if (_instance == null) {
@@ -30,7 +31,7 @@ public class MainMenu extends JPanel {
         sidePanel = SearchReplaceSidePanel.getInstance();
         add(sidePanel, BorderLayout.WEST);
         
-        FileScrollPane scrollPane = new FileScrollPane(new JPanel());
+        scrollPane = new FileScrollPane(new JPanel());
         add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -39,6 +40,13 @@ public class MainMenu extends JPanel {
         remove(sidePanel);
         add(newSidePanel, BorderLayout.WEST);
         sidePanel = newSidePanel;
+        // to revalidate the layout and repaint the panel after the change
+        revalidate();
+        repaint();
+    }
+
+    public void updateFiles(String[] files) {
+        scrollPane.updateFiles(files);
         // to revalidate the layout and repaint the panel after the change
         revalidate();
         repaint();

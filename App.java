@@ -9,8 +9,13 @@ public class App {
     public static void main(String[] args) {
         MainFrame mainFrame = MainFrame.getInstance();
         FileController fileController = FileController.getInstance();
-        fileController.setFolderPath("folder");
-
+        fileController.setCurrentFiles("folder/file1.txt", "folder/file2.txt", "folder/file3.txt", "folder/file4.txt");
+        fileController.printCurrentFiles();
+        File[] files = fileController.findInCurrentFiles("[1-2]|4", true, false);
+        System.out.println("Found files:");
+        for (File f : files) {
+            System.out.println(f.getName());
+        }
         
     }
 }

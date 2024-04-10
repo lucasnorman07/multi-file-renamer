@@ -15,7 +15,7 @@ public class TopPanel extends JPanel {
         setLayout(new FlowLayout());
 
         JButton[] elements = {
-            new JButton("Change folder"),
+            new JButton("Change files"),
             new JButton("Add prefix"),
             new JButton("Add suffix"),
             new JButton("search/replace")
@@ -35,8 +35,8 @@ public class TopPanel extends JPanel {
         elements[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // let the user select a new folder
-                FileController.getInstance().browseFolders();
+                // let the user select new files
+                FileController.getInstance().browseFiles();
             }
         });
         elements[1].addActionListener(new ActionListener() {

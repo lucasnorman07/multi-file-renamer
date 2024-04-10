@@ -8,19 +8,22 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collector;
 
 import javax.swing.JFileChooser;
 
-import menu.Frame;
 import menu.MainFrame;
+import menu.MainMenu;
 
 public class FileController {
     private static FileController _instance;
 
-    private File currentFolder;
+    private File[] currentFiles;
 
-    // to disable the default constructor
-    private FileController() {}
+    // make private to not allow other classes to create an instance
+    private FileController() {
+        currentFiles = new File[0];
+    }
 
     public static synchronized FileController getInstance() {
         if (_instance == null) {
@@ -29,26 +32,47 @@ public class FileController {
         return _instance;
     }
 
-    public void setFolderPath(String folderPath) {
-        currentFolder = new File(folderPath);
+    public File[] getCurrentFiles() {
+        return currentFiles;
     }
 
-    // let the user browse and select a new folder
-    public void browseFolders() {
+    public void setCurrentFiles(String... filePaths) {
+        currentFiles = new File[filePaths.length];
+        for (int i = 0; i < filePaths.length; i++) {
+            currentFiles[i] = new File(filePaths[i]);
+        }
+    }
+
+    public void printCurrentFiles() {
+        for (File file : currentFiles) {
+            System.out.println(file.getName());
+        }
+    }
+
+    // let the user browse and select new files
+    public void browseFiles() {
         JFileChooser chooser = new JFileChooser();
-        int choice = chooser.showOpenDialog(MainFrame.getInstance());
-        System.out.println(choice);
-        // setFolderPath("text");
+        chooser.setMultiSelectionEnabled(true);
+        int option = chooser.showOpenDialog(MainFrame.getInstance());
+        // if the user select files then update currentFiles
+        if (option == JFileChooser.APPROVE_OPTION) {
+            currentFiles = chooser.getSelectedFiles();
+        }
+        // update the scroll pane after the new files have been selected
+        MainMenu.getInstance().updateFiles(
+            // convert the File[] to String[] by using streams
+            Arrays.stream(currentFiles).map(File::getName).toArray(String[]::new)
+        );
     }
 
-    public void addPrefixToFilesInCurrentFolder(String prefix) {
-        for (File file : currentFolder.listFiles()) {
+    public void addPrefixToCurrentFiles(String prefix) {
+        for (File file : currentFiles) {
             rename(file, prefix + file.getName());
         }
     }
 
-    public void addSuffixToFilesInCurrentFolder(String suffix) {
-        for (File file : currentFolder.listFiles()) {
+    public void addSuffixToCurrentFiles(String suffix) {
+        for (File file : currentFiles) {
             // split with \\. to match with the literal dot character because split uses regex
             String[] sections = file.getName().split("\\.");
             // calculate the new file name by adding the suffix before the first extension
@@ -57,17 +81,7 @@ public class FileController {
         }
     }
 
-    public void printFileNamesInCurrentFolder() {
-        File[] files = currentFolder.listFiles();
-        if (files == null) {
-            System.out.println("The current files in folder is null");
-        } else {
-            for (File file : files) {
-                System.out.println(file.getName());
-            }
-        }
-    }
-
+    // helper function to create a regex pattern
     private Pattern createRegexPattern(String regex, boolean caseSensitive) {
         try {
             if (caseSensitive) return Pattern.compile(regex);
@@ -77,13 +91,13 @@ public class FileController {
         }
     }
 
-    public File[] findInCurrentFolder(String searchString, boolean useRegex, boolean caseSensitive) {
-        if (currentFolder == null) return null;
+    public File[] findInCurrentFiles(String searchString, boolean useRegex, boolean caseSensitive) {
         Pattern pattern = createRegexPattern(searchString, caseSensitive);
-        // if an error was caught then return null
-        if (pattern == null) return null;
-        // filter by all of the file names that match the regex
-        return currentFolder.listFiles((_dir, name) -> {
+        // if an error was caught then an empty array
+        if (pattern == null) return new File[0];
+        // filter by all of the file names that match the regex by using streams
+        return Arrays.stream(currentFiles).filter(file -> {
+            String name = file.getName();
             if (useRegex) {
                 // returns true if a match is found
                 return pattern.matcher(name).find();
@@ -92,13 +106,12 @@ public class FileController {
             String newName = caseSensitive ? name : name.toUpperCase();
             String newSearchString = caseSensitive ? searchString : searchString.toUpperCase();
             return newName.contains(newSearchString);
-        });
+        }).toArray(File[]::new);
     }
 
-    public void replaceInCurrentFolder(String target, String replacement, boolean useRegex, boolean caseSensitive) {
-        if (currentFolder == null) return;
+    public void replaceInCurrentFiles(String target, String replacement, boolean useRegex, boolean caseSensitive) {
         // loop over each file and replace the any matches with the target string to the replacement string
-        for (File file : currentFolder.listFiles()) {
+        for (File file : currentFiles) {
             boolean status = rename(file, findReplaceInString(file.getName(), target, replacement, useRegex, caseSensitive));
             if (!status) {
                 System.out.println("Two files can't have the same name!");
