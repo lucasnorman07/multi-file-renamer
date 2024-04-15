@@ -16,10 +16,12 @@ public class FileScrollPane extends JScrollPane {
         this.buttonPanel = buttonPanel;
         // add a grid layout so that the width of each button is adjusted to fit the buttonPanel (0 means any number of rows)
         buttonPanel.setLayout(new GridLayout(0, 1));
-        // for (int i = 0; i < 10001; i++) {
-        //     buttonPanel.add(new JButton("Super cool text File" + i));
-        // }
-        updateFiles("folder/file1.txt", "folder/file2.txt", "folder/file3.txt", "folder/file4.txt");
+
+        // add a default message when the program opens
+        JLabel placeholder = new JLabel("Select files to start...");
+        placeholder.setHorizontalAlignment(SwingConstants.CENTER);
+        buttonPanel.add(placeholder);
+
         setPreferredSize(new Dimension(buttonPanel.getPreferredSize().width + UIManager.getInt("ScrollBar.width"), 200));
         // set the scroll bar policy
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -28,15 +30,18 @@ public class FileScrollPane extends JScrollPane {
 
     public void updateFiles(String... files) {
         // clear the old file buttons
-        for (JButton button : currentFileButtons) {
-            buttonPanel.remove(button);
-        }
+        buttonPanel.removeAll();
         currentFileButtons.clear();
         // add the new file buttons to the currentFileButtons and buttonPanel
         for (String file : files) {
             JButton button = new JButton(file);
             currentFileButtons.add(button);
             buttonPanel.add(button);
+        }
+
+        // fill the available space to make the buttons not stretch
+        for (int i = 0; i < 8 - files.length; i++) {
+            buttonPanel.add(new JLabel());
         }
     }
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BaseSidePanel extends JPanel {
-    public BaseSidePanel(JComponent[] elements) {
+    public BaseSidePanel(JComponent... elements) {
         super();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
