@@ -1,12 +1,13 @@
-package menu;
+package gui;
 
 import javax.swing.*;
 
 import file_renaming.FileController;
+import gui.side_panels.*;
 
 import java.awt.*;
-
-import menu.side_panels.*;
+import java.io.File;
+import java.util.Arrays;
 
 public class MainMenu extends JPanel {
     private static MainMenu _instance;
@@ -28,7 +29,7 @@ public class MainMenu extends JPanel {
         JPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);
 
-        sidePanel = SearchReplaceSidePanel.getInstance();
+        sidePanel = PrefixSidePanel.getInstance();
         add(sidePanel, BorderLayout.WEST);
         
         scrollPane = new FileScrollPane(new JPanel());
@@ -45,7 +46,9 @@ public class MainMenu extends JPanel {
         repaint();
     }
 
-    public void updateFiles(String[] files) {
+    public void reloadScrollPane() {
+        // convert the File[] to String[] by using streams
+        String[] files = Arrays.stream(FileController.getInstance().getCurrentFiles()).map(File::getName).toArray(String[]::new);
         scrollPane.updateFiles(files);
         // to revalidate the layout and repaint the panel after the change
         revalidate();

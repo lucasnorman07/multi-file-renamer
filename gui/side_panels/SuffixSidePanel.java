@@ -1,6 +1,9 @@
-package menu.side_panels;
+package gui.side_panels;
 
 import javax.swing.*;
+
+import file_renaming.FileController;
+import gui.MainMenu;
 
 public class SuffixSidePanel extends BaseSidePanel {
     private static SuffixSidePanel _instance;
@@ -11,6 +14,11 @@ public class SuffixSidePanel extends BaseSidePanel {
             textField,
             button
         );
+        button.addActionListener(e -> {
+            FileController.getInstance().addSuffixToCurrentFiles(textField.getText());
+            // update the scroll pane after the new files have been selected
+            MainMenu.getInstance().reloadScrollPane();
+        });
     }
 
     public static synchronized SuffixSidePanel getInstance() {

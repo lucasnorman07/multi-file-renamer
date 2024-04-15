@@ -12,8 +12,8 @@ import java.util.stream.Collector;
 
 import javax.swing.JFileChooser;
 
-import menu.MainFrame;
-import menu.MainMenu;
+import gui.MainFrame;
+import gui.MainMenu;
 
 public class FileController {
     private static FileController _instance;
@@ -59,25 +59,24 @@ public class FileController {
             currentFiles = chooser.getSelectedFiles();
         }
         // update the scroll pane after the new files have been selected
-        MainMenu.getInstance().updateFiles(
-            // convert the File[] to String[] by using streams
-            Arrays.stream(currentFiles).map(File::getName).toArray(String[]::new)
-        );
+        MainMenu.getInstance().reloadScrollPane();
     }
 
     public void addPrefixToCurrentFiles(String prefix) {
-        for (File file : currentFiles) {
-            rename(file, prefix + file.getName());
+        // use a regular for loop to be able to pass the refrence
+        for (int i = 0; i < currentFiles.length; i++) {
+            rename(i, prefix + currentFiles[i].getName());
         }
     }
 
     public void addSuffixToCurrentFiles(String suffix) {
-        for (File file : currentFiles) {
+        // use a regular for loop to be able to pass the refrence
+        for (int i = 0; i < currentFiles.length; i++) {
             // split with \\. to match with the literal dot character because split uses regex
-            String[] sections = file.getName().split("\\.");
+            String[] sections = currentFiles[i].getName().split("\\.");
             // calculate the new file name by adding the suffix before the first extension
             String newFileName = sections[0] + suffix + Arrays.stream(sections, 1, sections.length).reduce("", (subtotal, element) -> subtotal + "." + element);
-            rename(file, newFileName);
+            rename(i, newFileName);
         }
     }
 
@@ -111,15 +110,15 @@ public class FileController {
 
     public void replaceInCurrentFiles(String target, String replacement, boolean useRegex, boolean caseSensitive) {
         // loop over each file and replace the any matches with the target string to the replacement string
-        for (File file : currentFiles) {
-            boolean status = rename(file, findReplaceInString(file.getName(), target, replacement, useRegex, caseSensitive));
+        for (int i = 0; i < currentFiles.length; i++) {
+            boolean status = rename(i, findReplaceInString(currentFiles[i].getName(), target, replacement, useRegex, caseSensitive));
             if (!status) {
                 System.out.println("Two files can't have the same name!");
             }
         }
     }
 
-    public static String findReplaceInString(String text, String target, String replacement, boolean useRegex, boolean caseSensitive) {
+    private static String findReplaceInString(String text, String target, String replacement, boolean useRegex, boolean caseSensitive) {
         if (useRegex) {
             if (caseSensitive)
                 return text.replaceAll(target, replacement);   
@@ -131,7 +130,7 @@ public class FileController {
         return replaceIgnoreCase(text, target, replacement);
     }
     
-    public static String replaceIgnoreCase(String text, String target, String replacement) {
+    private static String replaceIgnoreCase(String text, String target, String replacement) {
         int index = 0;
         while ((index = text.toLowerCase().indexOf(target.toLowerCase())) != -1) {
             text = text.substring(0, index) +
@@ -141,10 +140,15 @@ public class FileController {
         return text;
     }
 
-    // returns true for success and false for failure
-    public static boolean rename(File file, String newFileName) {
-        String newFilePath = file.getParentFile().toPath() + "/" + newFileName;
-        return file.renameTo(new File(newFilePath));
+    // returns true for success and false for failure (pass a file index to be able to update the refrence)
+    public boolean rename(int fileIndex, String newFileName) {
+        String newFilePath = currentFiles[fileIndex].getParentFile().toPath() + "/" + newFileName;
+        // create the new file
+        File newFile = new File(newFilePath);
+        // rename the file and update the refrence
+        boolean result = currentFiles[fileIndex].renameTo(newFile);
+        currentFiles[fileIndex] = newFile;
+        return result;
     }
 
     public static String getBaseName(File file) {

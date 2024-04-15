@@ -1,6 +1,8 @@
-package menu.side_panels;
-
+package gui.side_panels;
 import javax.swing.*;
+
+import file_renaming.FileController;
+import gui.MainMenu;
 
 public class SearchReplaceSidePanel extends BaseSidePanel {
     private static SearchReplaceSidePanel _instance;
@@ -12,6 +14,11 @@ public class SearchReplaceSidePanel extends BaseSidePanel {
             textFieldReplacement,
             button
         );
+        button.addActionListener(e -> {
+            FileController.getInstance().replaceInCurrentFiles(textFieldQuery.getText(), textFieldReplacement.getText(), true, true);
+            // update the scroll pane after the new files have been selected
+            MainMenu.getInstance().reloadScrollPane();
+        });
     }
 
     public static synchronized SearchReplaceSidePanel getInstance() {

@@ -1,4 +1,4 @@
-package menu.side_panels;
+package gui.side_panels;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,12 +1,9 @@
-package menu.side_panels;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+package gui.side_panels;
 
 import javax.swing.*;
 
 import file_renaming.FileController;
+import gui.MainMenu;
 
 public class PrefixSidePanel extends BaseSidePanel {
     private static PrefixSidePanel _instance;
@@ -17,11 +14,10 @@ public class PrefixSidePanel extends BaseSidePanel {
             textField,
             button
         );
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FileController.getInstance().addPrefixToCurrentFiles(textField.getText());
-            }
+        button.addActionListener(e -> {
+            FileController.getInstance().addPrefixToCurrentFiles(textField.getText());
+            // update the scroll pane after the new files have been selected
+            MainMenu.getInstance().reloadScrollPane();
         });
     }
 
