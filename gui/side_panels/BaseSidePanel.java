@@ -9,7 +9,7 @@ public class BaseSidePanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         for (JComponent element : elements) {
-            element.setPreferredSize(new Dimension(60, 30));
+            element.setPreferredSize(new Dimension(75, 30));
             add(element);
         }
     }

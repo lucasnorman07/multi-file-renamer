@@ -1,14 +1,10 @@
 package file_renaming;
 
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.util.Arrays;
-import java.util.Optional;
-import java.util.regex.Matcher;
+import java.util.LinkedHashSet;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-import java.util.stream.Collector;
 
 import javax.swing.JFileChooser;
 
@@ -109,35 +105,51 @@ public class FileController {
     }
 
     public void replaceInCurrentFiles(String target, String replacement, boolean useRegex, boolean caseSensitive) {
+        // use a linked hash set to be able to detect duplicates before actually renaming the files (it also needs to be ordered)
+        LinkedHashSet<String> resultStrings = new LinkedHashSet<>();
         // loop over each file and replace the any matches with the target string to the replacement string
-        for (int i = 0; i < currentFiles.length; i++) {
-            boolean status = rename(i, findReplaceInString(currentFiles[i].getName(), target, replacement, useRegex, caseSensitive));
+        for (File file : currentFiles) {
+            // if the resultStrings.add method returns false, then return because the was a duplicate
+            if (
+                !resultStrings.add(replaceInString(file.getName(), target, replacement, useRegex, caseSensitive))
+            ) {
+                System.out.println("String was duplicate!");
+                return; 
+            }
+        }
+        // actually rename the files
+        int i = 0;
+        for (String newName : resultStrings) {
+            // rename the file and update i
+            boolean status = rename(i++, newName);
             if (!status) {
-                System.out.println("Two files can't have the same name!");
+                // TODO, handle issue
+                System.out.println("Issue when renaming");
             }
         }
     }
 
-    private static String findReplaceInString(String text, String target, String replacement, boolean useRegex, boolean caseSensitive) {
+    private static String replaceInString(String text, String target, String replacement, boolean useRegex, boolean caseSensitive) {
         if (useRegex) {
             if (caseSensitive)
-                return text.replaceAll(target, replacement);   
+                return text.replaceAll(target, replacement);
+            // (?i) means to start case-insensitive mode in regex  
             return text.replaceAll("(?i)" + target, replacement);   
         }
         // without regex
         if (caseSensitive)
+            // text.replace doesn't use regex
             return text.replace(target, replacement);
         return replaceIgnoreCase(text, target, replacement);
     }
     
     private static String replaceIgnoreCase(String text, String target, String replacement) {
-        int index = 0;
-        while ((index = text.toLowerCase().indexOf(target.toLowerCase())) != -1) {
-            text = text.substring(0, index) +
-            replacement +
-            text.substring(index + replacement.length(), text.length());
-        };
-        return text;
+        int index = text.toLowerCase().indexOf(target.toLowerCase());
+        // if there are no more matches then return the text
+        if (index == -1) return text;
+        // if there are still matches then call replaceIgnoreCase with the new text until all matches are replaced
+        String newText = text.substring(0, index) + replacement + text.substring(index + target.length(), text.length());
+        return replaceIgnoreCase(newText, target, replacement);
     }
 
     // returns true for success and false for failure (pass a file index to be able to update the refrence)
