@@ -9,8 +9,9 @@ public class PrefixSidePanel extends BaseSidePanel {
     private static PrefixSidePanel _instance;
 
     // make private to not allow other classes to create an instance
-    public PrefixSidePanel(JTextField textField, JButton button) {
+    public PrefixSidePanel(JLabel textLabel, JTextField textField, JButton button) {
         super(
+            textLabel,
             textField,
             button
         );
@@ -24,7 +25,7 @@ public class PrefixSidePanel extends BaseSidePanel {
     public static synchronized PrefixSidePanel getInstance() {
         if (_instance == null) {
             _instance = new PrefixSidePanel(
-                new JTextField("Type prefix"), new JButton("Apply prefix")
+                new JLabel("Type prefix:"), new JTextField(), new JButton("Apply prefix")
             );
         }
         return _instance;

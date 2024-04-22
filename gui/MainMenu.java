@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import file_renaming.FileController;
 import gui.side_panels.*;
@@ -24,7 +25,9 @@ public class MainMenu extends JPanel {
 
     // make private to not allow other classes to create an instance
     private MainMenu() {
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(5, 5));
+        // to add some space around the manu
+        setBorder(new EmptyBorder(5, 5, 5, 5));
 
         JPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);

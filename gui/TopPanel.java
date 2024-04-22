@@ -10,7 +10,7 @@ import java.awt.*;
 public class TopPanel extends JPanel {
     public TopPanel() {
         super();
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         JButton[] elements = {
             new JButton("Select files"),
@@ -22,8 +22,12 @@ public class TopPanel extends JPanel {
         // add an action listener to each button
         addActionListeners(elements);
 
-        for (JButton element : elements) {
-            add(element);
+        for (int i = 0; i < elements.length; i++) {
+            add(elements[i]);
+            // add spacing between the buttons (therefor skip the last element)
+            if (i < elements.length - 1) {
+                add(Box.createHorizontalStrut(5));
+            }
         }
     }
 
