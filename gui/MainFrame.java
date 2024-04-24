@@ -18,6 +18,7 @@ public class MainFrame extends JFrame {
         setResizable(false);
         setTitle("Multi File Renamer");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // add the main menu
         add(MainMenu.getInstance());
         pack();
     }

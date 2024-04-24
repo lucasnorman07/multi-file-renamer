@@ -1,14 +1,17 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class FileScrollPane extends JScrollPane {
     private JPanel buttonPanel;
-
-    // to keep track of the file buttons that are currently displayed
-    private ArrayList<JButton> currentFileButtons = new ArrayList<>();
 
     public FileScrollPane(JPanel buttonPanel) {
         super(buttonPanel);
@@ -22,23 +25,18 @@ public class FileScrollPane extends JScrollPane {
         buttonPanel.add(placeholder);
 
         setPreferredSize(new Dimension(buttonPanel.getPreferredSize().width + UIManager.getInt("ScrollBar.width"), 200));
-        // set the scroll bar policy
-        setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
-        setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
     }
 
     public void updateFiles(String... files) {
         // clear the old file buttons
         buttonPanel.removeAll();
-        currentFileButtons.clear();
-        // add the new file buttons to the currentFileButtons and buttonPanel
+        // add the new file buttons to the buttonPanel
         for (String file : files) {
-            JButton button = new JButton(file);
-            currentFileButtons.add(button);
-            buttonPanel.add(button);
+            buttonPanel.add(new JButton(file));
         }
 
-        // fill the available space to make the buttons not stretch
+        // fill the available space to make the buttons not stretch when there are to few
+        // 8 is the number of buttons that fit in the scroll pane without triggering the scrollbar
         for (int i = 0; i < 8 - files.length; i++) {
             buttonPanel.add(new JLabel());
         }

@@ -1,5 +1,8 @@
 package gui.side_panels;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import file_renaming.FileController;
 import gui.MainMenu;

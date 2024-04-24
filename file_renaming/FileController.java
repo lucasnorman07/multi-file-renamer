@@ -17,9 +17,7 @@ public class FileController {
     private File[] currentFiles;
 
     // make private to not allow other classes to create an instance
-    private FileController() {
-        currentFiles = new File[0];
-    }
+    private FileController() {}
 
     public static synchronized FileController getInstance() {
         if (_instance == null) {

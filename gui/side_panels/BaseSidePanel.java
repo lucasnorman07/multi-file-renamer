@@ -1,9 +1,10 @@
 package gui.side_panels;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
-import java.awt.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 public class BaseSidePanel extends JPanel {
     public BaseSidePanel(JComponent... elements) {
