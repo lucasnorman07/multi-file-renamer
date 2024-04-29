@@ -18,6 +18,8 @@ public class SuffixSidePanel extends BaseSidePanel {
             button
         );
         button.addActionListener(e -> {
+            // skip the operation if there are no files
+            if (FileController.getInstance().getCurrentFiles() == null) return;
             FileController.getInstance().addSuffixToCurrentFiles(textField.getText());
             // update the scroll pane after the new files have been selected
             MainMenu.getInstance().reloadScrollPane();

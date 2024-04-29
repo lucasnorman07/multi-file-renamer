@@ -22,7 +22,9 @@ public class SearchReplaceSidePanel extends BaseSidePanel {
             button
         );
         button.addActionListener(e -> {
-            FileController.getInstance().replaceInCurrentFiles(textLabelTarget.getText(), textFieldReplacement.getText(), useRegex.isSelected(), caseSensitive.isSelected());
+            // skip the operation if there are no files
+            if (FileController.getInstance().getCurrentFiles() == null) return;
+            FileController.getInstance().replaceInCurrentFiles(textFieldTarget.getText(), textFieldReplacement.getText(), useRegex.isSelected(), caseSensitive.isSelected());
             // update the scroll pane after the new files have been selected
             MainMenu.getInstance().reloadScrollPane();
         });

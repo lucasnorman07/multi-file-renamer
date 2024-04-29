@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import gui.MainFrame;
 import gui.MainMenu;
@@ -107,11 +108,11 @@ public class FileController {
         LinkedHashSet<String> resultStrings = new LinkedHashSet<>();
         // loop over each file and replace the any matches with the target string to the replacement string
         for (File file : currentFiles) {
-            // if the resultStrings.add method returns false, then return because the was a duplicate
+            // if the resultStrings.add method returns false, then return because it was a duplicate
             if (
                 !resultStrings.add(replaceInString(file.getName(), target, replacement, useRegex, caseSensitive))
             ) {
-                System.out.println("String was duplicate!");
+                JOptionPane.showMessageDialog(MainFrame.getInstance(), "Multiple files cannot have the same name", "Cannot rename files", JOptionPane.ERROR_MESSAGE);
                 return; 
             }
         }
@@ -121,8 +122,8 @@ public class FileController {
             // rename the file and update i
             boolean status = rename(i++, newName);
             if (!status) {
-                // TODO, handle issue
-                System.out.println("Issue when renaming");
+                JOptionPane.showMessageDialog(MainFrame.getInstance(), "An error occured when renaming a file, make sure it's not locked by another program", "Error when renaming file", JOptionPane.ERROR_MESSAGE);
+
             }
         }
     }

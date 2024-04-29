@@ -1,5 +1,7 @@
 package gui.side_panels;
 
+import java.io.File;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -18,6 +20,8 @@ public class PrefixSidePanel extends BaseSidePanel {
             button
         );
         button.addActionListener(e -> {
+            // skip the operation if there are no files
+            if (FileController.getInstance().getCurrentFiles() == null) return;
             FileController.getInstance().addPrefixToCurrentFiles(textField.getText());
             // update the scroll pane after the new files have been selected
             MainMenu.getInstance().reloadScrollPane();
